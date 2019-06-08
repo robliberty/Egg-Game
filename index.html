@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Maryn: Egg</title>
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+<link rel="manifest" href="images/favicons/site.webmanifest">
+<link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="images/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" type="text/css" href="animate.css" />
+<style>
+*{margin:0; border:0; outline:0; padding:0; box-sizing: border-box;}
+body{background:#03a9f4; height: 100vh;}
+
+.main{height: 50vh; max-width: 414px; margin: 0 auto; box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08); position: relative; z-index:10; display:flex; flex-flow:row wrap; align-items:center; justify-content:center; overflow:hidden; background: radial-gradient(#89c0fd 0%,#13289e 100%); padding:20px; position: -webkit-sticky; position:sticky; top:0;}
+.main .item{user-select:none;}
+.main .item.closed{width: 226px; height: 330px; border: none; border-radius: 50% / 60% 60% 40% 40%; background: #fff; box-shadow: -20px -20px 100px rgba(0,0,0,.3) inset;}
+.main .item.open{background:none !important; display: flex; flex-flow: row wrap; justify-content: center; align-items: center;}
+.main .item img{max-width:100%; max-height: 48vh;}
+.main .item.one{box-shadow: -20px -20px 100px rgba(0,0,0,.3) inset, 0 0 600px 40px #fdd835;}
+.main .item.two{box-shadow: -20px -20px 100px rgba(0,0,0,.3) inset, 0 0 600px 80px #fdd835;}
+.main .item.three{box-shadow: -20px -20px 100px rgba(0,0,0,.3) inset, 0 0 600px 120px #fdd835;}
+.main .item.four{box-shadow: -20px -20px 100px rgba(0,0,0,.3) inset, 0 0 600px 200px #fdd835;}
+.main .new{display:none; position: absolute; top: 10px; left: 10px; z-index: 9999; padding: 14px 28px; font-weight: 700; background: linear-gradient(to bottom, #ff8405 0%, #f5c00a 100%); color: #fff; border-radius: 50px; font-family: sans-serif; font-size: 18px; text-transform: uppercase; border: 2px solid #fff; box-shadow: 5px 7px 10px rgba(0,0,0,0.2);}
+
+.sub{display: flex; flex-flow: row wrap; align-items: flex-start; justify-content: center; padding: 10px; max-width: 414px; margin: 0 auto;}
+.sub .item{user-select:none; outline:none; width: calc(14% - 10px); margin: 5px; height: 70px;}
+.sub .item.closed{background: #fff; border-radius: 50% / 60% 60% 40% 40%; box-shadow: -6px -6px 10px rgba(0,0,0,.3) inset;}
+.sub .item.open{background:none !important; display: flex; flex-flow: row wrap; justify-content: center; align-items: center;}
+.sub .item img{width: auto; height: 50px;}
+
+tap-highlight-color: transparent;
+
+audio {display: none;}
+</style>
+</head>
+
+<body>
+<div class="main">
+    <div class="new">Play Again!</div>
+    <div class="item animated" data-count="0" data-id=""></div>
+</div>
+<div class="sub">
+    <div class="item closed" data-prize="chase_1.png"></div>
+    <div class="item closed" data-prize="marshall_1.png"></div>
+    <div class="item closed" data-prize="everest_1.png"></div>
+    <div class="item closed" data-prize="anna_2.png"></div>
+    <div class="item closed" data-prize="rubble_1.png"></div>
+    <div class="item closed" data-prize="chase_2.png"></div>
+    <div class="item closed" data-prize="marshall_halloween.png"></div>
+    <div class="item closed" data-prize="rocky_1.png"></div>
+    <div class="item closed" data-prize="rocky_2.png"></div>
+    <div class="item closed" data-prize="sky_1.png"></div>
+    <div class="item closed" data-prize="anna_1.png"></div>
+    <div class="item closed" data-prize="zuma_1.png"></div>
+    <div class="item closed" data-prize="elsa_1.png"></div>
+    <div class="item closed" data-prize="olaf_1.png"></div>
+    <div class="item closed" data-prize="tarzan_1.png"></div>
+    <div class="item closed" data-prize="kristoff_1.png"></div>
+    <div class="item closed" data-prize="olaf_2.png"></div>
+    <div class="item closed" data-prize="sven_1.png"></div>
+    <div class="item closed" data-prize="tarzan_2.png"></div>
+    <div class="item closed" data-prize="elsa_2.png"></div>
+    <div class="item closed" data-prize="aladdin_1.png"></div>
+    <div class="item closed" data-prize="boots_1.png"></div>
+    <div class="item closed" data-prize="cinderella_1.png"></div>
+    <div class="item closed" data-prize="daisy_1.png"></div>
+    <div class="item closed" data-prize="doc_1.png"></div>
+    <div class="item closed" data-prize="doc_2.png"></div>
+    <div class="item closed" data-prize="donald_1.png"></div>
+    <div class="item closed" data-prize="dora_1.png"></div>
+    <div class="item closed" data-prize="dora_2.png"></div>
+    <div class="item closed" data-prize="genie_1.png"></div>
+    <div class="item closed" data-prize="george_1.png"></div>
+    <div class="item closed" data-prize="george_2.png"></div>
+    <div class="item closed" data-prize="hallie_1.png"></div>
+    <div class="item closed" data-prize="jasmine_1.png"></div>
+    <div class="item closed" data-prize="lambie_1.png"></div>
+    <div class="item closed" data-prize="mice_1.png"></div>
+    <div class="item closed" data-prize="mickey_1.png"></div>
+    <div class="item closed" data-prize="minnie_1.png"></div>
+    <div class="item closed" data-prize="minnie_2.png"></div>
+    <div class="item closed" data-prize="peppa_1.png"></div>
+    <div class="item closed" data-prize="peppa_2.png"></div>
+    <div class="item closed" data-prize="rapunzel_1.png"></div>
+    <div class="item closed" data-prize="rapunzel_2.png"></div>
+    <div class="item closed" data-prize="swiper_1.png"></div>
+    <div class="item closed" data-prize="catboy_1.png"></div>
+    <div class="item closed" data-prize="catboy_2.png"></div>
+    <div class="item closed" data-prize="owlette_1.png"></div>
+    <div class="item closed" data-prize="gekko_1.png"></div>
+    <div class="item closed" data-prize="lunagirl_1.png"></div>
+    <div class="item closed" data-prize="ninja_1.png"></div>
+    <div class="item closed" data-prize="cow_1.png"></div>
+    <div class="item closed" data-prize="dory_1.png"></div>
+    <div class="item closed" data-prize="heyhey_1.png"></div>
+    <div class="item closed" data-prize="lego_1.png"></div>
+    <div class="item closed" data-prize="lego_2.png"></div>
+    <div class="item closed" data-prize="lego_3.png"></div>
+    <div class="item closed" data-prize="maui_1.png"></div>
+    <div class="item closed" data-prize="mike_1.png"></div>
+    <div class="item closed" data-prize="moana_1.png"></div>
+    <div class="item closed" data-prize="moana_2.png"></div>
+    <div class="item closed" data-prize="nemo_1.png"></div>
+    <div class="item closed" data-prize="peterpan_1.png"></div>
+    <div class="item closed" data-prize="pua_1.png"></div>
+    <div class="item closed" data-prize="randall_1.png"></div>
+    <div class="item closed" data-prize="sully_1.png"></div>
+    <div class="item closed" data-prize="sully_2.png"></div>
+    <div class="item closed" data-prize="tinkerbell_1.png"></div>
+    <div class="item closed" data-prize="toystory_1.png"></div>
+    <div class="item closed" data-prize="toystory_2.png"></div>
+    <div class="item closed" data-prize="toystory_3.png"></div>
+    <div class="item closed" data-prize="turtle_1.png"></div>
+    <div class="item closed" data-prize="vampirina_1.png"></div>
+    <div class="item closed" data-prize="vampirina_2.png"></div>
+</div>
+
+<!-- Preload Game Sounds -->
+<audio preload="auto" class="audio_pop" >
+  <source src="audio/pop.wav">
+</audio>
+
+<audio preload="auto" class="audio_magic" >
+  <source src="audio/magic.wav">
+</audio>
+
+<audio preload="auto" class="audio_woosh" >
+  <source src="audio/woosh.wav">
+</audio>
+
+<audio preload="auto" class="audio_jump" >
+  <source src="audio/jump.wav">
+</audio>
+
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+var pop = $('.audio_pop');
+var magic = $('.audio_magic');
+var woosh = $('.audio_woosh');
+var jump = $('.audio_jump');
+
+document.addEventListener("touchstart", function(){}, true);
+
+$('.main > .item').click(function() {
+    if($(this).hasClass('closed')){
+        var count = $(this).data('count');
+        count = count + 1;
+        $(this).data('count', count);
+        
+        if(count < 5){
+            pop[0].play();
+        }else{
+            magic.volume = 0.1;
+            magic[0].play();
+        }
+        
+        //Open Egg by Tapping 5x
+        if(count === 1){
+            $(this).removeClass('slideInUp faster').addClass('one shake');
+        }
+        if(count === 2){
+            $(this).removeClass('one shake').addClass('two wobble');
+        }
+        if(count === 3){
+            $(this).removeClass('two wobble').addClass('three shake');
+        }
+        if(count === 4){
+            $(this).removeClass('three shake').addClass('four wobble');
+        }
+        //Egg Opened
+        if(count === 5){
+            var prize = $(this).data('prize');
+            $(this).removeClass('four wobble closed').addClass('open zoomIn tada').data('count',0).html('<img src="images/'+prize+'">');
+            $('.sub .item.closed[data-prize="'+prize+'"]').removeClass('closed').addClass('open').html('<img src="images/'+prize+'">');
+            if($('.sub .closed:visible').length <= 0){
+                $('.main .new').show();
+            }
+        }
+    }
+    //Animate Prize with Tap
+    if($(this).hasClass('open')){
+        jump[0].play();
+        $(this).removeClass('zoomIn').toggleClass("tada bounce");
+    }
+});
+
+$('.main .new').click(function() {
+    location.reload();
+});
+
+$('.sub .item').click(function() {
+    var prize = $(this).data('prize');
+    if($(this).hasClass('closed')){
+        woosh[0].play();
+        $('.main .item').html('').data('prize',prize).removeClass('open zoomIn').addClass('closed slideInUp faster');
+    }
+    if($(this).hasClass('open')){
+        woosh[0].play();
+        $('.main .item').html('<img src="images/'+prize+'">').removeClass('closed').addClass('open zoomIn');
+    }
+});
+
+$(document).ready(function() {
+var div = $(".sub .item").toArray();
+while(div.length > 0) {
+    var idx = Math.floor((Math.random() * (div.length-1)));
+    var element = div.splice(idx, 1);
+    $('.sub').append(element[0]);
+}
+$(".sub .item:not(:lt(28))").hide();
+});
+</script>
+</body>
+</html>
